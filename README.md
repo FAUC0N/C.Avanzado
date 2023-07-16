@@ -1,6 +1,6 @@
 ![Coding][coding]
 > # C Avanzado
-> Ejercicios y Prácticas de programación en C para sistemas enbebidos.
+> Ejercicios y Prácticas de programación en C para sistemas embebidos.
 
 
 
