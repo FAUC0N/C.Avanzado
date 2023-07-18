@@ -18,14 +18,16 @@ La memoria reservada con `calloc` también está en el Heap.
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef unsigned char byte;
+
 void printPointer(void *ptr) {
     printf("El puntero apunta a la dirección de memoria: %x\n", ptr);
 }
 
 int main() {
     // Crear 3 bloques de memoria
-    void *ptr1 = calloc(10, 1);  // Primer bloque
-    void *ptr2 = calloc(20, 1);  // Segundo bloque
+    void *ptr1 = calloc(10, 1);  // Primer bloque = calloc(10, sizeof(byte))
+    void *ptr2 = calloc(20, sizeof(byte));// Segundo bloque = calloc(20, 1)
     void *ptr3 = calloc(30, 1);  // Tercer bloque
 
     // Imprimir las direcciones de memoria
@@ -38,7 +40,7 @@ int main() {
     printf("Se ha liberado el segundo bloque de memoria.\n");
 
     // Crear otro bloque de memoria ligeramente más pequeño que el segundo
-    void *ptr4 = calloc(15, 1);
+    void *ptr4 = calloc(15, sizeof(byte));
     printPointer(ptr4);
     printf("Se ha creado un nuevo bloque de memoria después de liberar el segundo bloque.\n");
 
@@ -47,7 +49,7 @@ int main() {
     printf("Se ha liberado el nuevo bloque de memoria.\n");
 
     // Crear otro bloque de memoria mayor
-    void *ptr5 = calloc(40, 1);
+    void *ptr5 = calloc(40, sizeof(byte));
     printPointer(ptr5);
     printf("Se ha creado un bloque de memoria mayor.\n");
 
@@ -56,7 +58,7 @@ int main() {
     printf("Se ha liberado el nuevo bloque de memoria.\n");
 
     // Crear otro bloque de memoria menor
-    void *ptr6 = calloc(16, 1);
+    void *ptr6 = calloc(16, sizeof(byte));
     printPointer(ptr6);
     printf("Se ha creado un bloque de memoria menor.\n");
 
