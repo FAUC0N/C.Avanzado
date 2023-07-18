@@ -1,18 +1,18 @@
 /*
-`malloc` es una función en C que asigna memoria dinámica en el heap. 
-El nombre 'malloc' viene de 'memory allocation'. 
+`calloc` es una función en C que también asigna memoria dinámica en el heap. 
+El nombre 'calloc' viene de 'contiguous allocation'.
 
-Toma un único argumento: el tamaño de la memoria que se va a asignar en bytes. 
-Devuelve un puntero a la primera dirección del bloque de memoria asignado.
+A diferencia de `malloc`, `calloc` toma dos argumentos: el número de elementos 
+que se van a asignar y el tamaño de cada elemento. `calloc` luego asigna 
+suficiente memoria para acomodar esa cantidad de elementos.
 
-Es importante notar que `malloc` no inicializa la memoria, lo que significa 
-que la memoria asignada contendrá "basura" o datos aleatorios hasta que 
-se escriban datos en ella. 
+Otra diferencia clave es que `calloc` inicializa todos los bytes de la memoria 
+asignada a cero, por lo que no contendrá basura o datos aleatorios.
 
-Además, cualquier memoria asignada con `malloc` debe liberarse con `free` 
-cuando ya no sea necesaria para evitar fugas de memoria.
+Al igual que con `malloc`, la memoria asignada con `calloc` debe liberarse con 
+`free` cuando ya no sea necesaria para evitar fugas de memoria.
 
-La memoria reservada con `malloc` está en el Heap.
+La memoria reservada con `calloc` también está en el Heap.
 */
 
 #include <stdio.h>
@@ -24,9 +24,9 @@ void printPointer(void *ptr) {
 
 int main() {
     // Crear 3 bloques de memoria
-    void *ptr1 = malloc(10);  // Primer bloque
-    void *ptr2 = malloc(20);  // Segundo bloque
-    void *ptr3 = malloc(30);  // Tercer bloque
+    void *ptr1 = calloc(10, 1);  // Primer bloque
+    void *ptr2 = calloc(20, 1);  // Segundo bloque
+    void *ptr3 = calloc(30, 1);  // Tercer bloque
 
     // Imprimir las direcciones de memoria
     printPointer(ptr1);
@@ -38,7 +38,7 @@ int main() {
     printf("Se ha liberado el segundo bloque de memoria.\n");
 
     // Crear otro bloque de memoria ligeramente más pequeño que el segundo
-    void *ptr4 = malloc(15);
+    void *ptr4 = calloc(15, 1);
     printPointer(ptr4);
     printf("Se ha creado un nuevo bloque de memoria después de liberar el segundo bloque.\n");
 
@@ -47,7 +47,7 @@ int main() {
     printf("Se ha liberado el nuevo bloque de memoria.\n");
 
     // Crear otro bloque de memoria mayor
-    void *ptr5 = malloc(40);
+    void *ptr5 = calloc(40, 1);
     printPointer(ptr5);
     printf("Se ha creado un bloque de memoria mayor.\n");
 
@@ -56,7 +56,7 @@ int main() {
     printf("Se ha liberado el nuevo bloque de memoria.\n");
 
     // Crear otro bloque de memoria menor
-    void *ptr6 = malloc(16);
+    void *ptr6 = calloc(16, 1);
     printPointer(ptr6);
     printf("Se ha creado un bloque de memoria menor.\n");
 
