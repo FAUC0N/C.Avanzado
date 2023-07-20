@@ -64,8 +64,8 @@ struct Figura* crearCuadrado(double lado) {
 }
 
 int main() {
-    struct Figura *c = crearCirculo(5);
-    struct Figura *q = crearCuadrado(5);
+    struct Figura *c = crearCirculo(15);
+    struct Figura *q = crearCuadrado(20);
 
     printf("Área del círculo: %f\n", c->area(&c->datos.circulo));
     printf("Perímetro del círculo: %f\n", c->perimetro(&c->datos.circulo));
