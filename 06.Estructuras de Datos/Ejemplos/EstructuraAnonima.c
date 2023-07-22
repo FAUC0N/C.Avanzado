@@ -8,7 +8,7 @@
 
 #define USERS 15
 
-//#define NO_LABEL
+#define NO_LABEL
 
 struct Info{
     char Nombre[8];
