@@ -16,6 +16,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+/*
+USUARIO Y PASSWORD
+*/
+#define USERNAME "JV"
+#define PASSWORD "56364"
 
 #define MAX_CONNECTORS 4
 #define MAX_TERMINALS 8
@@ -245,12 +252,33 @@ ConfigFunc getConfig = &getSDCardConfig;
 ConfigFunc getConfig = &getSimulationConfig;
 #endif
 
+// Definición de la función para validar el nombre de usuario y la contraseña
+int access_granted() {
+    char username[50];
+    char password[50];
+
+    // Solicitar al usuario que introduzca el nombre de usuario y la contraseña
+    printf("Ingrese nombre de usuario: ");
+    scanf("%s", username);
+    printf("Ingrese contraseña: ");
+    scanf("%s", password);
+
+    if (strcmp(username, USERNAME) == 0 && strcmp(password, PASSWORD) == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 /// @brief Función principal para probar la funcionalidad del arnés y sus conexiones.
 ///
 /// Esta función crea un arnés y establece varias conexiones entre sus terminales. 
 /// Luego imprime todas las conexiones en el arnés y finalmente libera la memoria que el arnés ocupa.
 /// @return Retorna 0 al finalizar la ejecución exitosamente. 
 int main() {
+
+    if(!access_granted()) return -1;
+
     // Creamos el esqueleto del arnés.
     Harness* harness = createHarness();
 
