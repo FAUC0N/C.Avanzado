@@ -98,9 +98,9 @@ int main() {
 
     // Solicitar ID y PIN al usuario
     int id, pin;
-    printf("Por favor ingresa tu ID: ");
+    printf("Ingresa tu ID: ");
     scanf("%d", &id);
-    printf("Por favor ingresa tu PIN: ");
+    printf("Ingresa tu PIN: ");
     scanf("%d", &pin);
 
     // Verificar el usuario
