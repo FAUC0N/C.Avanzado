@@ -19,20 +19,20 @@ struct Node* createNode(int value, const char* route){
     return newNode;
 }
 
-struct Node* insertValue(struct Node* node, int value, char* route){
-    if(node == NULL) return createNode(value, route);
+struct Node* insertValue(struct Node** node, int value, char* route){
+    if((*node) == NULL) return createNode(value, route);
 
-    if(value < node->dato){
+    if(value < (*node)->dato){
         char newRoute[256];
         snprintf(newRoute, sizeof(newRoute), "%sL", route);
-        node->left = insertValue(node->left, value, newRoute);
+        (*node)->left = insertValue(&((*node)->left), value, newRoute);
     }else{
         char newRoute[256];
         snprintf(newRoute, sizeof(newRoute), "%sR", route);
-        node->right = insertValue(node->right, value, newRoute);
+        (*node)->right = insertValue(&((*node)->right), value, newRoute);
     }
 
-    return node;
+    return (*node);
 }
 
 void printInOrder(struct Node* node) {
@@ -91,15 +91,15 @@ int main(void){
     // Crear un árbol vacío
     struct Node* root = NULL;
 
-    root = insertValue(root, 5, "Root");
-    insertValue(root, 8, "Root");
-    insertValue(root, 7, "Root");
-    insertValue(root, 9, "Root");
-    insertValue(root, 1, "Root");
-    insertValue(root, 6, "Root");
-    insertValue(root, 2, "Root");
-    insertValue(root, 5, "Root");
-    insertValue(root, 6, "Root");
+    root = insertValue(&root, 5, "Root");
+    insertValue(&root, 8, "Root");
+    insertValue(&root, 7, "Root");
+    insertValue(&root, 9, "Root");
+    insertValue(&root, 1, "Root");
+    insertValue(&root, 6, "Root");
+    insertValue(&root, 2, "Root");
+    insertValue(&root, 5, "Root");
+    insertValue(&root, 6, "Root");
 
     printf("Impresión In-Order\n");
     printInOrder(root);
